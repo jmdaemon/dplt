@@ -1,4 +1,4 @@
-import pylab.calc as pc
+import calc as pc
 import numpy as np
 import pandas as pd
 
