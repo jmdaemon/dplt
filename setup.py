@@ -20,10 +20,10 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "pylab"},
-    packages=find_packages(where="pylab"),
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
     python_requires=">=3.6",
-    py_modules=['pylab', 'util', 'calc'],
+    py_modules=['util', 'calc'],
     install_requires=[
         'argparse',
     ],
