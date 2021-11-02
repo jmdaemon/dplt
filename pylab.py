@@ -5,8 +5,8 @@ import pylab.util
 
 parser = argparse.ArgumentParser(description='Executable file for Labs')
 parser.add_argument('input'     , type=str, help='File path to some input.csv')
-parser.add_argument('--csv'     , type=str, help='Change output filename of lab data [Default: Data.csv]')
-parser.add_argument('--graph'   , type=str, help='Change output filename of graph data [Default: Graph.csv]')
+parser.add_argument('--csv'     , required=False, type=str, help='Change output filename of lab data [Default: Data.csv]')
+parser.add_argument('--graph'   , required=False, type=str, help='Change output filename of graph data [Default: Graph.csv]')
 
 args = parser.parse_args()
 
