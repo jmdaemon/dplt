@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import argparse
-import util
+import lab
 
 def main():
     parser = argparse.ArgumentParser(description='Executable file for Labs')
@@ -17,4 +17,4 @@ def main():
 
     input_csv = input_csv if input_csv else 'Data.csv'
     graph_csv = graph_csv if graph_csv else 'Graph.csv'
-    util.output(input_csv, output_csv, graph_csv)
+    lab.output(input_csv, output_csv, graph_csv)
