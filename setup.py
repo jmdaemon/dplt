@@ -22,7 +22,7 @@ setup(
     package_dir={'': 'src'},
     packages=find_packages(where='src'),
     python_requires=">=3.6",
-    py_modules=['dxp.util', 'dxp.calc', 'dxp.lab'],
+    py_modules=['dxp.util', 'dxp.lab'],
     install_requires=['argparse',],
     scripts=['scripts/dplt', 'scripts/tpose'],
     entry_points={

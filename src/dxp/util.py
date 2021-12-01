@@ -1,4 +1,3 @@
-import dxp.calc as pc
 import numpy as np
 import pandas as pd
 
@@ -52,9 +51,3 @@ def avg(data: pd.DataFrame, inputs: pd.DataFrame, col='avg'):
 
 def stdev(data, inputs, col):
     return(np.std(inputs[col].to_numpy()))
-
-def err(data: pd.DataFrame, inputs: pd.DataFrame, sigmas: np.ndarray, length: int, col='davg'):
-    v_cdt       = np.vectorize(pc.errorf)
-    deltas      = v_cdt(sigmas, length)
-    data[col]   = pd.DataFrame(deltas)
-    return data, deltas
