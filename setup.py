@@ -24,6 +24,7 @@ setup(
     python_requires=">=3.6",
     py_modules=['phylab.util', 'phylab.calc', 'phylab.lab'],
     install_requires=['argparse',],
+    scripts=['scripts/phyplt'],
     entry_points={
         'console_scripts': [
             'phylab = phylab.phylab_cmd:main',
