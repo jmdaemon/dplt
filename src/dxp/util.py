@@ -33,24 +33,14 @@ def clone(data: pd.DataFrame, inputs: pd.DataFrame):
         data[col] = inputs[col].copy()
     return data
 
-def avg(data: pd.DataFrame, inputs: pd.DataFrame, shape, idxs: list[str], col='avg'):
-    values = []
-    for idx in idxs:
-        values.append(inputs[idx])
+def merge(data: pd.DataFrame, arr: np.ndarray, col: str):
+    data[col] = pd.DataFrame(arr)
+    return data
 
-    flat_values = []
-    for val in values:
-        flat_values.append(val.values.flatten())
-
-    ar_data = np.empty(shape=shape)
-
-    i = 0
-    for values_list in zip(*flat_values):
-        ar_data[i] = pc.average(values_list)
-        i += 1
-
-    data[col] = pd.DataFrame(ar_data)
-    return data, ar_data, flat_values
+def avg(data: pd.DataFrame, inputs: pd.DataFrame, col='avg'):
+    masses = inputs[col].to_numpy()
+    avg_masses = np.full(inputs.shape[0], np.average(masses))
+    return(merge(data, avg_masses, col))
 
 def sd(data: pd.DataFrame, inputs: pd.DataFrame,
        shape, ar_data: np.ndarray, fvals: list, col='s.d'):
