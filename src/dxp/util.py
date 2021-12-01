@@ -30,6 +30,12 @@ def copy(data: pd.DataFrame, inputs: pd.DataFrame, cols: list[str]):
         data[col] = inputs[col].copy()
     return data
 
+def clone(data: pd.DataFrame, inputs: pd.DataFrame):
+    cols = inputs.columns.tolist()
+    for col in cols:
+        data[col] = inputs[col].copy()
+    return data
+
 def avg(data: pd.DataFrame, inputs: pd.DataFrame, shape, idxs: list[str], col='avg'):
     values = []
     for idx in idxs:
