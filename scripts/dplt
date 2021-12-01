@@ -3,7 +3,6 @@
 import argparse
 import pandas as pd
 import numpy as np
-# import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 
@@ -35,8 +34,6 @@ def signif(x, p=3):
 df = pd.read_csv(input_csv)
 x = df[cols[0]].values.flatten()
 y = df[cols[1]].values.flatten()
-# x = df['L']
-# y = df['T']
 
 # Create Linear Regression
 coef = np.polyfit(x, y, 1)
