@@ -20,16 +20,14 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "src"},
-    packages=find_packages(where="src"),
+    package_dir={'': 'src'},
+    packages=find_packages(where='src'),
     python_requires=">=3.6",
-    py_modules=['util', 'calc'],
-    install_requires=[
-        'argparse',
-    ],
+    py_modules=['phylab.util', 'phylab.calc', 'phylab.lab'],
+    install_requires=['argparse',],
     entry_points={
         'console_scripts': [
-            'phylab = phylab_cmd:main',
+            'phylab = phylab.phylab_cmd:main',
         ],
     },
     # setup_requires=['pytest-runner'],
