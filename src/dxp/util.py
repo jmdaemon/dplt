@@ -16,6 +16,10 @@ def head(data: pd.DataFrame, inputs: pd.DataFrame):
     print(inputs.head())
     print('\n')
 
+def shape(df: pd.DataFrame):
+    shape = df.shape[0]
+    return shape
+
 def display(df: pd.DataFrame, title='Output DataFrame', *args, **kwargs):
     print(f'==== {title} ====\n')
     print(f'{df}\n')
