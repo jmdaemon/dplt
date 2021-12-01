@@ -37,10 +37,13 @@ def merge(data: pd.DataFrame, arr: np.ndarray, col: str):
     data[col] = pd.DataFrame(arr)
     return data
 
+def expand(data: pd.DataFrame, inputs: pd.DataFrame, val, col):
+    array = np.full(inputs.shape[0], val)
+    return(merge(data, array, col))
+
 def avg(data: pd.DataFrame, inputs: pd.DataFrame, col='avg'):
     masses = inputs[col].to_numpy()
-    avg_masses = np.full(inputs.shape[0], np.average(masses))
-    return(merge(data, avg_masses, col))
+    return np.average(masses)
 
 def sd(data: pd.DataFrame, inputs: pd.DataFrame,
        shape, ar_data: np.ndarray, fvals: list, col='s.d'):
