@@ -24,7 +24,7 @@ setup(
     python_requires=">=3.6",
     py_modules=['dxp.util', 'dxp.calc', 'dxp.lab'],
     install_requires=['argparse',],
-    scripts=['scripts/dplt'],
+    scripts=['scripts/dplt', 'scripts/tpose'],
     entry_points={
         'console_scripts': [
             'dxp = dxp.cli:main',
