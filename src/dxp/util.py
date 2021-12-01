@@ -45,17 +45,8 @@ def avg(data: pd.DataFrame, inputs: pd.DataFrame, col='avg'):
     masses = inputs[col].to_numpy()
     return np.average(masses)
 
-def sd(data: pd.DataFrame, inputs: pd.DataFrame,
-       shape, ar_data: np.ndarray, fvals: list, col='s.d'):
-    ar_sd: np.ndarray = np.empty(shape)
-
-    i = 0
-    for values_list in zip(*fvals):
-        ar_sd[i] = pc.std_dev(values_list)
-        i += 1
-
-    data[col] = pd.DataFrame(ar_sd)
-    return data, ar_sd
+def stdev(data, inputs, col='stdev'):
+    return(np.std(inputs[col].to_numpy()))
 
 def err(data: pd.DataFrame, inputs: pd.DataFrame, sigmas: np.ndarray, length: int, col='davg'):
     v_cdt           = np.vectorize(pc.errorf)
