@@ -10,11 +10,8 @@ def signif(x, p=2):
 
 # Displaying
 def head(data: pd.DataFrame, inputs: pd.DataFrame):
-    print('==== Output DataFrame ====\n')
-    print(data.head())
-    print('==== Input DataFrame ====\n')
-    print(inputs.head())
-    print('\n')
+    print(f'==== Output DataFrame ====\n\n{data.head()}\n')
+    print(f'==== Input DataFrame ====\n\n{inputs.head()}\n')
 
 def shape(df: pd.DataFrame):
     shape = df.shape[0]
