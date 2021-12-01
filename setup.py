@@ -4,14 +4,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="pylab-jmd",
+    name="phylab-jmd",
     version="0.1.0",
     author="Joseph Diza",
     author_email="josephm.diza@gmail.com",
     description="Python library and executable for conducting lab reports",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/jmdaemon/pylab",
+    url="https://github.com/jmdaemon/phylab",
     project_urls={
         "Bug Tracker": "https://github.com/jmdaemon/sap/issues",
     },
@@ -29,7 +29,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pylab = pylab_cmd:main',
+            'phylab = phylab_cmd:main',
         ],
     },
     # setup_requires=['pytest-runner'],
