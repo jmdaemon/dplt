@@ -9,7 +9,7 @@ setup(
     license='MIT',
     author="Joseph Diza",
     author_email="josephm.diza@gmail.com",
-    description="Python library and executable for conducting lab reports",
+    description="Library for analyzing CSV data",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/jmdaemon/dxp",
@@ -24,7 +24,7 @@ setup(
     python_requires=">=3.6",
     py_modules=['dxp.util', 'dxp.calc', 'dxp.lab'],
     install_requires=['argparse',],
-    scripts=['scripts/phyplt'],
+    scripts=['scripts/dplt'],
     entry_points={
         'console_scripts': [
             'dxp = dxp.cli:main',
