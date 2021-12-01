@@ -2,16 +2,17 @@ import dxp.calc as pc
 import numpy as np
 import pandas as pd
 
-# Displaying
+# Pandas DataFrames
+
+## Displaying
 def head(data: pd.DataFrame, inputs: pd.DataFrame):
     print(f'==== Output DataFrame ====\n\n{data.head()}\n')
     print(f'==== Input DataFrame ====\n\n{inputs.head()}\n')
 
-def display(df: pd.DataFrame, title='Output DataFrame', *args, **kwargs):
-    print(f'==== {title} ====\n')
-    print(f'{df}\n')
+def display(df: pd.DataFrame, title='Output DataFrame'):
+    print(f'==== {title} ====\n\n{df}\n')
 
-# For DataFrames
+## Helper Functions
 def shape(df: pd.DataFrame):
     shape = df.shape[0]
     return shape
@@ -44,12 +45,12 @@ def export(df, dest, cols):
     display(output)
     output.to_csv(dest, index=False)
 
-# Array Calculations
+# Numpy Arrays
 def avg(data: pd.DataFrame, inputs: pd.DataFrame, col='avg'):
     masses = inputs[col].to_numpy()
     return np.average(masses)
 
-def stdev(data, inputs, col='stdev'):
+def stdev(data, inputs, col):
     return(np.std(inputs[col].to_numpy()))
 
 def err(data: pd.DataFrame, inputs: pd.DataFrame, sigmas: np.ndarray, length: int, col='davg'):
