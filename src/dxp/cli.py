@@ -2,7 +2,6 @@
 
 import argparse
 import dxp.lab
-# import dxp
 
 def main():
     parser = argparse.ArgumentParser(description='Executable file for Labs')
