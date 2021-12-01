@@ -1,4 +1,4 @@
-from dxp.util import pd, display
+from dxp.util import pd, display, Data
 import importlib.util
 
 def output(fp: str, csv_input: str, output_csv: str, graph_csv: str,
@@ -15,10 +15,11 @@ def output(fp: str, csv_input: str, output_csv: str, graph_csv: str,
     '''
 
     inputs  = pd.read_csv(csv_input)
-    columns = inputs.columns.tolist()
-    data    = pd.DataFrame(columns=columns, index=inputs.index)
-    display(data    , title='Output DataFrame')
-    display(inputs  , title='Input DataFrame')
+    outputs = pd.DataFrame()
+
+    data = Data(outputs, inputs)
+    data.display('Output DataFrame', 'odf')
+    data.display('Input DataFrame', 'idf')
 
     def module_from_file(module_name, file_path):
         spec = importlib.util.spec_from_file_location(module_name, file_path)
@@ -27,4 +28,4 @@ def output(fp: str, csv_input: str, output_csv: str, graph_csv: str,
         return module
 
     pop = module_from_file("pop", f'{fp}/pop.py')
-    pop.populate(data, inputs, output_csv, graph_csv)
+    pop.populate(data, output_csv, graph_csv)
