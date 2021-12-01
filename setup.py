@@ -6,15 +6,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="phylab-jmd",
     version="0.1.0",
+    license='MIT',
     author="Joseph Diza",
     author_email="josephm.diza@gmail.com",
     description="Python library and executable for conducting lab reports",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/jmdaemon/phylab",
-    project_urls={
-        "Bug Tracker": "https://github.com/jmdaemon/sap/issues",
-    },
+    project_urls={ "Bug Tracker": "https://github.com/jmdaemon/phylab/issues", },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
@@ -30,7 +29,5 @@ setup(
             'phylab = phylab.phylab_cmd:main',
         ],
     },
-    # setup_requires=['pytest-runner'],
-    # tests_require=['pytest==4.4.1'],
     test_suite='tests',
 )
