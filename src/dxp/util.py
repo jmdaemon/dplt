@@ -54,25 +54,6 @@ def err(data: pd.DataFrame, inputs: pd.DataFrame, sigmas: np.ndarray, length: in
     data[col] = pd.DataFrame(deltas)
     return data, deltas
 
-def calc_T(tbar: float):
-    return tbar / 10
-
-def pop_T(data: pd.DataFrame, inputs: pd.DataFrame,
-          ar_t_bar: np.ndarray):
-    np.vectorize(calc_T)(ar_t_bar)
-    ar_T = np.vectorize(calc_T)(ar_t_bar)
-    data['T'] = pd.DataFrame(ar_T)
-    display(data, title='Period Populated')
-    return data, ar_T
-
-def pop_dT(data: pd.DataFrame, inputs: pd.DataFrame,
-           ar_delta_t: np.ndarray):
-    np.vectorize(calc_T)(ar_delta_t)
-    ar_dT = np.vectorize(calc_T)(ar_delta_t)
-    data['dT'] = pd.DataFrame(ar_dT)
-    display(data, title='Error in Period Populated')
-    return data, ar_dT
-
 # Export
 def export_data(df: pd.DataFrame, dest):
     output_data = df
