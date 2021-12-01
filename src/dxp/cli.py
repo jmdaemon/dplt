@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 import argparse
-import phylab.lab
-# import phylab
+import dxp.lab
+# import dxp
 
 def main():
     parser = argparse.ArgumentParser(description='Executable file for Labs')
@@ -20,4 +20,4 @@ def main():
 
     input_csv = input_csv if input_csv else 'Data.csv'
     graph_csv = graph_csv if graph_csv else 'Graph.csv'
-    phylab.lab.output(fp, input_csv, output_csv, graph_csv)
+    dxp.lab.output(fp, input_csv, output_csv, graph_csv)

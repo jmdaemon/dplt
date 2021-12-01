@@ -1,4 +1,4 @@
-import phylab.calc as pc
+import dxp.calc as pc
 import numpy as np
 import pandas as pd
 
