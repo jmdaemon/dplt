@@ -1,5 +1,5 @@
-from dxp.util import pd, display, Data
-import importlib.util
+from dxp.util import pd, Data
+import wora.dynmod
 
 def output(fp: str, csv_input: str, output_csv: str, graph_csv: str,
            *args, **kwargs):
@@ -21,11 +21,5 @@ def output(fp: str, csv_input: str, output_csv: str, graph_csv: str,
     data.display('Output DataFrame', 'odf')
     data.display('Input DataFrame', 'idf')
 
-    def module_from_file(module_name, file_path):
-        spec = importlib.util.spec_from_file_location(module_name, file_path)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        return module
-
-    pop = module_from_file("pop", f'{fp}/pop.py')
+    pop = wora.dynmod.module_from_file("pop", f'{fp}/pop.py')
     pop.populate(data, output_csv, graph_csv)

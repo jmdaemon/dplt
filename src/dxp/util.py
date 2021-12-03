@@ -34,8 +34,7 @@ def shape(df: pd.DataFrame):
     return shape
 
 def copy(data: Data, cols: list[str] = None):
-    if cols is None:
-        cols = data.idf.columns.tolist()
+    cols = data.idf.columns.tolist() if cols is None else None
     for col in cols:
         data.odf[col] = data.idf[col].copy()
     return data
@@ -48,12 +47,9 @@ def expand(data: Data, val, col: str):
     array = np.full(data.idf.shape[0], val)
     return(merge(data, array, col))
 
-def export(df: pd.DataFrame, dest: str, cols: list):
+def export(df: pd.DataFrame, dest: str, cols: list = None):
     output: pd.DataFrame
-    if len(cols) == 1:
-        output = df
-    else:
-        output = df[cols]
+    output = df if cols is None else df[cols]
     display(output)
     output.to_csv(dest, index=False)
 

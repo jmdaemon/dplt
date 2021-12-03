@@ -6,11 +6,8 @@ from signal import signal, SIGPIPE, SIG_DFL
 signal(SIGPIPE, SIG_DFL)
 
 def read_df(fp: str, header=bool):
-    csv: pd.DataFrame
-    if header:
-        csv = pd.read_csv(fp, skiprows=1) # skip header
-    else:
-        csv = pd.read_csv(fp, header=None)
+    # skip header
+    csv = pd.read_csv(fp, skiprows=1) if header else pd.read_csv(fp, header=None)
     return csv
 
 def saveto(df: pd.DataFrame, saveas: str):
