@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Dxp
-===
+Dxp: A Data eXPloration library
+===============================
 
 .. toctree::
    :maxdepth: 2
@@ -16,7 +16,6 @@ Dxp
 .. config
 
 
-Dxp is a data exploration library.
 Dxp provides useful functions to read, write, and manipulate 
 Pandas DataFrames and Numpy Arrays. Dxp also provides a hookable interface to
 easily get started.
