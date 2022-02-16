@@ -25,16 +25,7 @@ class Data:
         print(f'==== {title} ====\n\n{self[df]}\n')
 
 def show(df: pd.DataFrame, msg='DataFrame'):
-    ''' Displays the contents of a DataFrame in a block format
-    Parameters
-    ----------
-    df : pd.DataFrame
-        A Pandas DataFrame
-
-    Returns
-    -------
-    None '''
-
+    ''' Displays the contents of a DataFrame in a block format '''
     print(msg)
     print('=' * len(msg))
     print(df)
@@ -57,9 +48,18 @@ def catslice(idf: pd.DataFrame, odf: pd.DataFrame, cols: list[str] = None) -> pd
             odf[col] = idf[col].copy()
         return odf
 
-def expand(data: pd.DataFrame, val, col: str) -> pd.DataFrame:
-    array = np.full(data.idf.shape[0], val)
-    return(catslice(data, pd.DataFrame(array), col))
+# def expand(data: pd.DataFrame, col: str, val) -> pd.DataFrame:
+    # ''' Expands a single value into a DataFrame '''
+    # # default_values = np.repeat(np.arange(nvalues), ncolumns).reshape(nvalues, ncolumns)
+    # col_len = data.shape[0]
+    # array   = np.full(col_len, val)
+    # arraydf = pd.DataFrame(array)
+    # return()
+
+def expand(nvalues, ncolumns) -> np.ndarray:
+    ''' Expands values into Numpy Arrays '''
+    array = np.repeat(np.arange(nvalues), ncolumns).reshape(nvalues, ncolumns)
+    return array
 
 def export(df: pd.DataFrame, dest: str, cols: list = None):
     ''' Exports a csv file of the Data Frame to a destination
