@@ -21,24 +21,31 @@ class Data:
 
 # Pandas DataFrames
 
-## Displaying
-def head(data: Data):
-    ''' Displays the head of both the input and output Data Frames '''
-    print(f'==== Output DataFrame ====\n\n{data.odf.head()}\n')
-    print(f'==== Input DataFrame ====\n\n{data.idf.head()}\n')
+def show(df: pd.DataFrame, msg='DataFrame'):
+    ''' Displays the contents of a DataFrame in a block format
 
-def display(df: pd.DataFrame, title='DataFrame'):
-    ''' Displays the contents of a Pandas DataFrame '''
-    print(f'==== {title} ====\n\n{df}\n')
+    Parameters
+    ----------
+    df : pd.DataFrame
+        A Pandas DataFrame
+
+    Returns
+    -------
+    None
+
+    '''
+
+    print(msg)
+    print('=' * len(msg))
+    print(df)
+    print('=' * len(msg) + '\n')
 
 ## Helper Functions
-def shape(df: pd.DataFrame):
-    ''' Returns the shape of a DataFrame'''
-    shape = df.shape[0]
-    return shape
 
-def copy(data: Data, cols: list[str] = None) -> Data:
-    ''' Copies all the data from cols in data.idf to data.odf
+def copy(idf: pd.DataFrame, odf: pd.DataFrame, cols: list[str] = None) -> pd.DataFrame:
+    ''' Copies slices of data from a DataFrame
+
+    If no columns are given, then the two DataFrames are concatenated together.
 
     Parameters
     ----------
@@ -47,34 +54,37 @@ def copy(data: Data, cols: list[str] = None) -> Data:
 
     Returns
     -------
-    Data
-        The Data dataclass
+    pd.DataFrame
+        The DataFrame with the copied columns
     '''
-    cols = data.idf.columns.tolist() if cols is None else None
-    for col in cols:
-        data.odf[col] = data.idf[col].copy()
-    return data
+    if cols is None:
+        return pd.concat([idf, odf])
+    else:
+        for col in cols:
+            odf[col] = idf[col].copy()
+        return odf
 
-def merge(data: pd.DataFrame, arr: np.ndarray, col: str) -> pd.DataFrame:
+def merge(df: pd.DataFrame, arr: np.ndarray, col: str) -> pd.DataFrame:
     ''' Merges a Numpy Array into a Pandas DataFrame
 
     Parameters
     ----------
-    data : Data
-        Data dataclass object
+    data : pd.DataFrame
+        Pandas DataFrame
     arr : np.ndarray
         Numpy Array to copy from
     col : str
-        Sets the destination column of the copied data in the
-        Pandas DataFrame
+        Sets the column of the copied data in df
 
     Returns
     -------
     pd.DataFrame
-        The resulting DataFrame with the new merged values
+        DataFrame with the new merged values
     '''
-    data[col] = pd.DataFrame(arr)
-    return data
+    # arrdf = pd.DataFrame(arr, columns=[col])
+    arrdf = pd.DataFrame(arr)
+    # df[col] = pd.DataFrame(arr)
+    return df.merge(arrdf, on=col)
 
 # Type mismatch
 def expand(data: Data, val, col: str) -> pd.DataFrame:
@@ -106,7 +116,7 @@ def avg(data: Data, col='avg') -> np.ndarray:
     masses = data.idf[col].to_numpy()
     return np.average(masses)
 
-def stdev(data: Data, col: str) -> np.ndarray:
+def stdev(df: pd.DataFrame, col: str) -> np.ndarray:
     ''' Returns the standard deviation of the input Data Frame
 
     Parameters
@@ -122,4 +132,4 @@ def stdev(data: Data, col: str) -> np.ndarray:
         Returns a Numpy Array filled with the standard deviation
         from the input DataFrame
     '''
-    return(np.std(data.idf[col].to_numpy()))
+    return(np.std(df.to_numpy()))
