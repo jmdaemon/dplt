@@ -3,6 +3,12 @@ import pandas as pd
 
 from dataclasses import dataclass
 
+class Sample:
+    def __init__(self, fp: str):
+        self.fp = fp
+        self.csv = pd.read_csv(fp)
+        self.df = pd.DataFrame()
+
 @dataclass
 class Data:
     ''' Stores the Input and Output Data Frames '''
