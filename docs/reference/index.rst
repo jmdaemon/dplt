@@ -4,8 +4,6 @@ API reference
 .. currentmodule:: dxp
 
 .. toctree::
-   :titlesonly:
+   :hidden:
 
-   cli
-   lab
    util

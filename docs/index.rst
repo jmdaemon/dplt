@@ -11,9 +11,6 @@ Dxp: A Data eXPloration library
    :caption: Contents:
 
    reference/index
-.. usage
-.. install
-.. config
 
 
 Dxp provides useful functions to read, write, and manipulate 
@@ -34,24 +31,26 @@ Create a ``pop.py`` file in a directory with the following:
    # pop.py
    import dxp.util as du
 
-   def populate(data: du.Data, output_csv: str, graph_csv: str):
+   def pop(data: dict):
        pass
 
-From there you can start using some of the library functions.
+Then run ``dxp input.csv``. Assuming you have an ``input.csv`` file set up,
+dxp will process the file and hand execution off to your ``pop.py`` file for
+you to process. From there you make use of dxp's library functions.
 
 Contributing
 ============
-Anyone is free to contribute, just open an issue, or fork the project and create an upstream PR. If you need to contact me, you can email me at mailto:diza@unbc.ca
+Anyone is free to contribute, just open an issue, or fork
+the project and create an upstream PR.
+
+If you need to contact me, you can email me at mailto:diza@unbc.ca
 
 Todo
 ====
 
-* Replace hookable dynmod interface with callable cli
 * Create examples for docs
-* Add unit testing & fuzzing
-* Remove various side effects
-* Clarify intent of dxp modules. dxp.cli, dxp.lab have confusing behaviors. 
-* Create data object with holds a path. Replaces ``pop(data, output_csv, graph_csv`` with data object that contains the inputs, outputs, and optional graph dataframes and paths required.
+* Add more unit tests & do fuzzing
+* Add more useful functionality
 
 Indices and tables
 ==================
