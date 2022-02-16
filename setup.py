@@ -21,8 +21,8 @@ setup(
     package_dir={'': 'src'},
     packages=find_packages(where='src'),
     python_requires=">=3.6",
-    py_modules=['dxp', 'dxp.util', 'dxp.lab', 'dxp.cli'],
-    install_requires=['argparse', 'pandas', 'numpy'],
+    py_modules=['dxp', 'dxp.util', 'dxp.cli'],
+    install_requires=['argparse', 'pandas', 'numpy', 'wora'],
     scripts=['scripts/dplt', 'scripts/tpose'],
     entry_points={
         'console_scripts': [

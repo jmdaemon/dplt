@@ -1,22 +1,30 @@
 #!/usr/bin/python
 
 import argparse
-import dxp.lab
+import wora.dynmod
+import pandas as pd
+import dxp.util as du
 
 def main():
     parser = argparse.ArgumentParser(description='Executable file for Labs')
-    parser.add_argument('fp'     , type=str, help='File path to the current lab directory')
-    parser.add_argument('input'     , type=str, help='File path to some input.csv')
-    parser.add_argument('--csv'     , required=False, type=str, help='Change output filename of lab data [Default: Data.csv]')
-    parser.add_argument('--graph'   , required=False, type=str, help='Change output filename of graph data [Default: Graph.csv]')
+    parser.add_argument('input' , type=str, help='Sets the inputs csv file')
+    parser.add_argument('-o'    , required=False, type=str,
+                        help='Set the output file [Default: out.csv]')
 
     args = parser.parse_args()
 
-    fp          = args.fp
-    input_csv   = args.input
-    output_csv  = args.csv
-    graph_csv   = args.graph
+    # Set inputs, default output file to 'out.csv'
+    fp  = args.input
+    out = args.csv if args.csv else 'out.csv'
 
-    input_csv = input_csv if input_csv else 'Data.csv'
-    graph_csv = graph_csv if graph_csv else 'Graph.csv'
-    dxp.lab.output(fp, input_csv, output_csv, graph_csv)
+    # Wrap data in dictionary
+    inputs  = du.Sample(fp, pd.read_csv(fp))
+    outputs = du.Sample(out, pd.DataFrame())
+    data = {
+        'input': inputs,
+        'output': outputs
+    }
+
+    # Hand execution off to pop.py file
+    pop = wora.dynmod.module_from_file("pop", f'{fp}/pop.py')
+    pop.pop(data)

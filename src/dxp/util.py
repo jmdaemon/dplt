@@ -2,10 +2,9 @@ import numpy as np
 import pandas as pd
 
 class Sample:
-    def __init__(self, fp: str):
+    def __init__(self, fp: str, df: pd.DataFrame):
         self.fp = fp
-        self.csv = pd.read_csv(fp)
-        self.df = pd.DataFrame()
+        self.df = df
 
 def show(df: pd.DataFrame, msg='DataFrame'):
     ''' Displays the contents of a DataFrame in a block format '''
