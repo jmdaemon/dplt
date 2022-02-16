@@ -8,13 +8,16 @@ import dxp.util as du
 def main():
     parser = argparse.ArgumentParser(description='Executable file for Labs')
     parser.add_argument('input' , type=str, help='Sets the inputs csv file')
+    parser.add_argument('-d'    , required=False, type=str, help='''Sets the working directory
+                        for the pop.py file [Default: ./]''')
     parser.add_argument('-o'    , required=False, type=str,
                         help='Set the output file [Default: out.csv]')
 
     args = parser.parse_args()
 
-    # Set inputs, default output file to 'out.csv'
+    # Get user input and set defaults
     fp  = args.input
+    wd  = args.d if args.d else '.'
     out = args.csv if args.csv else 'out.csv'
 
     # Wrap data in dictionary
@@ -26,5 +29,5 @@ def main():
     }
 
     # Hand execution off to pop.py file
-    pop = wora.dynmod.module_from_file("pop", f'{fp}/pop.py')
+    pop = wora.dynmod.module_from_file("pop", f'{wd}/pop.py')
     pop.pop(data)
