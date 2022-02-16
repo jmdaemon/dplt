@@ -48,43 +48,20 @@ def catslice(idf: pd.DataFrame, odf: pd.DataFrame, cols: list[str] = None) -> pd
             odf[col] = idf[col].copy()
         return odf
 
-# def expand(data: pd.DataFrame, col: str, val) -> pd.DataFrame:
-    # ''' Expands a single value into a DataFrame '''
-    # # default_values = np.repeat(np.arange(nvalues), ncolumns).reshape(nvalues, ncolumns)
-    # col_len = data.shape[0]
-    # array   = np.full(col_len, val)
-    # arraydf = pd.DataFrame(array)
-    # return()
-
 def expand(nvalues, ncolumns) -> np.ndarray:
     ''' Expands values into Numpy Arrays '''
     array = np.repeat(np.arange(nvalues), ncolumns).reshape(nvalues, ncolumns)
     return array
 
-def export(df: pd.DataFrame, dest: str, cols: list = None):
-    ''' Exports a csv file of the Data Frame to a destination
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        A Pandas DataFrame
-    dest : str
-        File path to the output csv file
-    cols : list
-        A list of columns to copy over from df
-
-    Returns
-    -------
-    None
-    '''
-    output: pd.DataFrame = df if cols is None else df[cols] # Split behavior into splice method
-    show(output) # Side effect
-    output.to_csv(dest, index=False)
+def slice(df: pd.DataFrame, cols: list[str]):
+    ''' Return a slice of the DataFrame's columns '''
+    return df[cols]
 
 # Numpy Arrays
-def colavg(data: pd.DataFrame, col='avg') -> np.ndarray:
-    masses = data[col].to_numpy()
-    return np.average(masses)
+def colavg(df: pd.DataFrame, col='avg') -> np.ndarray:
+    ''' Return the average of an entire column '''
+    values = df[col].to_numpy()
+    return np.average(values)
 
 def stdev(df: pd.DataFrame, col: str) -> np.ndarray:
     ''' Returns the standard deviation of the input Data Frame
