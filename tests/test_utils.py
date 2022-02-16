@@ -26,12 +26,3 @@ def test_expand():
     actual = du.expand(1, 2)
     expect = np.ndarray([1,1])
     assert (actual.all() == expect.all()), 'Should expand values to an array'
-
-def test_stdev():
-    df = setupdf()
-    print(df['col1']) # Debug statement
-    actual = du.stdev(df, 'col1')
-    expect = 0.5
-    assert np.isclose(actual, expect,
-                      rtol=1e-05, atol=1e-08, equal_nan=False
-                      ), 'Should calculate standard deviation of DataFrame'

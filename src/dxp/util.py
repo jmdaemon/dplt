@@ -62,21 +62,3 @@ def colavg(df: pd.DataFrame, col='avg') -> np.ndarray:
     ''' Return the average of an entire column '''
     values = df[col].to_numpy()
     return np.average(values)
-
-def stdev(df: pd.DataFrame, col: str) -> np.ndarray:
-    ''' Returns the standard deviation of the input Data Frame
-
-    Parameters
-    ----------
-    data : Data
-        A Data dataclass
-    col : str
-        The column to calculate stdev on
-
-    Returns
-    -------
-    np.ndarray
-        Returns a Numpy Array filled with the standard deviation
-        from the input DataFrame
-    '''
-    return(np.std(df.to_numpy()))
