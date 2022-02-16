@@ -29,7 +29,6 @@ class Data:
 
 def show(df: pd.DataFrame, msg='DataFrame'):
     ''' Displays the contents of a DataFrame in a block format
-
     Parameters
     ----------
     df : pd.DataFrame
@@ -37,9 +36,7 @@ def show(df: pd.DataFrame, msg='DataFrame'):
 
     Returns
     -------
-    None
-
-    '''
+    None '''
 
     print(msg)
     print('=' * len(msg))
@@ -53,11 +50,6 @@ def copy(idf: pd.DataFrame, odf: pd.DataFrame, cols: list[str] = None) -> pd.Dat
 
     If no columns are given, then the two DataFrames are concatenated together.
 
-    Parameters
-    ----------
-    cols : list[str]
-        List of columns to copy
-
     Returns
     -------
     pd.DataFrame
@@ -70,32 +62,9 @@ def copy(idf: pd.DataFrame, odf: pd.DataFrame, cols: list[str] = None) -> pd.Dat
             odf[col] = idf[col].copy()
         return odf
 
-def merge(df: pd.DataFrame, arr: np.ndarray, col: str) -> pd.DataFrame:
-    ''' Merges a Numpy Array into a Pandas DataFrame
-
-    Parameters
-    ----------
-    data : pd.DataFrame
-        Pandas DataFrame
-    arr : np.ndarray
-        Numpy Array to copy from
-    col : str
-        Sets the column of the copied data in df
-
-    Returns
-    -------
-    pd.DataFrame
-        DataFrame with the new merged values
-    '''
-    # arrdf = pd.DataFrame(arr, columns=[col])
-    arrdf = pd.DataFrame(arr)
-    # df[col] = pd.DataFrame(arr)
-    return df.merge(arrdf, on=col)
-
-# Type mismatch
-def expand(data: Data, val, col: str) -> pd.DataFrame:
+def expand(data: pd.DataFrame, val, col: str) -> pd.DataFrame:
     array = np.full(data.idf.shape[0], val)
-    return(merge(data, array, col))
+    return(copy(data, pd.DataFrame(array), col))
 
 def export(df: pd.DataFrame, dest: str, cols: list = None):
     ''' Exports a csv file of the Data Frame to a destination
@@ -114,12 +83,12 @@ def export(df: pd.DataFrame, dest: str, cols: list = None):
     None
     '''
     output: pd.DataFrame = df if cols is None else df[cols] # Split behavior into splice method
-    display(output) # Side effect
+    show(output) # Side effect
     output.to_csv(dest, index=False)
 
 # Numpy Arrays
-def avg(data: Data, col='avg') -> np.ndarray:
-    masses = data.idf[col].to_numpy()
+def colavg(data: pd.DataFrame, col='avg') -> np.ndarray:
+    masses = data[col].to_numpy()
     return np.average(masses)
 
 def stdev(df: pd.DataFrame, col: str) -> np.ndarray:
