@@ -24,9 +24,6 @@ class Data:
     def display(self, title='Output DataFrame', df='odf'):
         print(f'==== {title} ====\n\n{self[df]}\n')
 
-
-# Pandas DataFrames
-
 def show(df: pd.DataFrame, msg='DataFrame'):
     ''' Displays the contents of a DataFrame in a block format
     Parameters
@@ -43,10 +40,8 @@ def show(df: pd.DataFrame, msg='DataFrame'):
     print(df)
     print('=' * len(msg) + '\n')
 
-## Helper Functions
-
-def copy(idf: pd.DataFrame, odf: pd.DataFrame, cols: list[str] = None) -> pd.DataFrame:
-    ''' Copies slices of data from a DataFrame
+def catslice(idf: pd.DataFrame, odf: pd.DataFrame, cols: list[str] = None) -> pd.DataFrame:
+    ''' Concatenates slices of data from a DataFrame
 
     If no columns are given, then the two DataFrames are concatenated together.
 
@@ -64,7 +59,7 @@ def copy(idf: pd.DataFrame, odf: pd.DataFrame, cols: list[str] = None) -> pd.Dat
 
 def expand(data: pd.DataFrame, val, col: str) -> pd.DataFrame:
     array = np.full(data.idf.shape[0], val)
-    return(copy(data, pd.DataFrame(array), col))
+    return(catslice(data, pd.DataFrame(array), col))
 
 def export(df: pd.DataFrame, dest: str, cols: list = None):
     ''' Exports a csv file of the Data Frame to a destination

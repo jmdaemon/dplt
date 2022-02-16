@@ -12,7 +12,7 @@ def test_show(capsys):
     captured = capsys.readouterr()
     assert(captured is not None), 'Should output contents of DataFrame'
 
-def test_copy():
+def test_catslice():
     idf = setupdf()
     odf = pd.DataFrame()
     sliceidf = pd.DataFrame(idf['col1'])
