@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as fh:
 
 setup(
     name='dxp',
-    license='MIT',
+    license='GPL-3.0',
     author='Joseph Diza',
     author_email='josephm.diza@gmail.com',
     description='Library for analyzing CSV data',
