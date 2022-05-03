@@ -4,11 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+dxp = {editable = true, path = "."}
 argparse = "*"
 pandas = "*"
 numpy = "*"
 wora = "*"
-dxp = "*"
 
 [dev-packages]
 
